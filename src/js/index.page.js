@@ -49,7 +49,7 @@ function render() {
         card("Electronics", "electronics.html", "images/electronics.jpeg", 'flex-2'),
         card("Processing", "processing.html", "images/processing.jpeg", 'flex-1'),
     ].join(""), {
-        className: 'cards-wrapper'
+        className: 'cards-wrapper content'
     });
     const out = banner('<h1>Projects</h1>' + cards)
     pageRender.render("intermediate/index.html", out, head())

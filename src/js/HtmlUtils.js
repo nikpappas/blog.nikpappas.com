@@ -1,6 +1,6 @@
 function createElement(tag, body, attributes) {
     const bodyStr = body && Array.isArray(body) ? body.map(x => createElement(x.tag, x.body, x.attributes)).join('') : body;
-    console.log('bodyStr', bodyStr)
+    console.log('bodyStr', bodyStr) 
     const attrStr = attributes ? Object.keys(attributes).map(k => `${map2Html(k)}="${attributes[k]}"`).join(" ") : '';
     console.log('attr', attrStr);
     return `<${tag} ${attrStr}>${bodyStr}</${tag}>`;

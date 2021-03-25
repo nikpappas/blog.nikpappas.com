@@ -1,4 +1,6 @@
 const tags = {
+    SECTION: 'SECTION',
+    ARTICLE: 'article',
     DIV: 'div',
     SPAN: 'span',
     ANCHOR: 'a',

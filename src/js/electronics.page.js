@@ -1,9 +1,10 @@
 const pageRender = require("./pageRender");
 
 function render(){
-    pageRender.render("./intermediate/electronics.html", "","");
+    pageRender.render("./intermediate/electronics.html", "",""); 
 }
 
-module.exports = {
+module.exports = { 
     render: render
 }
+

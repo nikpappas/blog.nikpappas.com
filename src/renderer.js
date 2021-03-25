@@ -180,7 +180,12 @@ async function render() {
         });
 
     // minify("./client/script.js", UglifyJS.minify, "./rendering/out/script.js");
-    minify("./src/client/style.css", cssMini, "./out/style.css");
+    const css = await (await walk("./src/client"))
+        .filter(f => f.endsWith('.css'));
+
+    css.forEach(f => {
+            minify(f, cssMini, f.replace('src/client', 'out'));
+        })
 }
 
 
@@ -194,6 +199,8 @@ function minify(file, func, fileOut) {
     }
     let outCode = minifiedcode.code ? minifiedcode.code : minifiedcode;
     console.log(outCode);
+    const parentDir = getParentDir(fileOut);
+    createDirIfNotExists(parentDir);
     fs.writeFileSync(fileOut, outCode);
     console.log("++++++++++++++++++++++++++++++++++++++++++++");
 }
@@ -208,4 +215,22 @@ async function walk(dir, files = []) {
         }
     }
     return files
+}
+
+function getParentDir(file) {
+    return file.split("/").slice(0, -1).join("/");
+
+}
+
+function createDirIfNotExists(dir) {
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, {
+            recursive: true
+        })
+    }
+}
+
+module.exports = {
+    createDirIfNotExists,
+    getParentDir
 }

@@ -1,7 +1,7 @@
 const pageRender = require("./pageRender");
 
 function render(){
-    pageRender.render("./intermediate/music.html", "","");
+    pageRender.render("./intermediate/music.html", "",""); 
 }
 
 module.exports = {
