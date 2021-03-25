@@ -1,11 +1,9 @@
 const fs = require('fs');
+const path = require("path");
 const babel = require('babel-core');
-const mini = require('html-minifier')
+const mini = require('html-minifier');
 const UglifyJS = require('uglify-js');
 const cssMini = require('css-minify');
-const indexPage = require('./js/index');
-const music = require('./js/music');
-const visualisation = require('./js/visualisation');
 
 const mini_opts = {
     // // Treat attributes in case sensitive manner (useful for custom HTML tags)
@@ -169,12 +167,17 @@ const mini_opts = {
 render();
 
 
-function render() {
-    [indexPage, music, visualisation].forEach(x => x.render());
-
-    ['index.html', 'music.html', 'visualisation.html'].forEach(f => {
-        minify(`./intermediate/${f}`, (x) => mini.minify(x, mini_opts), `./out/${f}`);
-    })
+async function render() {
+    const files = await (await walk("./src/js"))
+        .filter(f => f.endsWith(".page.js"))
+        .map(f => ({
+            in: f.replace("src", "."),
+            out: f.replace("src/js/", "").replace(".page.js", ".html")
+        }))
+        .forEach(f => {
+            require(f.in).render();
+            minify(`./intermediate/${f.out}`, (x) => mini.minify(x, mini_opts), `./out/${f.out}`);
+        });
 
     // minify("./client/script.js", UglifyJS.minify, "./rendering/out/script.js");
     minify("./src/client/style.css", cssMini, "./out/style.css");
@@ -193,4 +196,16 @@ function minify(file, func, fileOut) {
     console.log(outCode);
     fs.writeFileSync(fileOut, outCode);
     console.log("++++++++++++++++++++++++++++++++++++++++++++");
+}
+
+async function walk(dir, files = []) {
+    for await (const d of await fs.promises.opendir(dir)) {
+        const entry = path.join(dir, d.name);
+        console.log(entry);
+        if (d.isFile()) files.push(entry);
+        else if (d.isDirectory()) {
+            files = await walk(entry, files);
+        }
+    }
+    return files
 }
