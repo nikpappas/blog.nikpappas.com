@@ -13,6 +13,8 @@ const pageRender = require('./pageRender');
 
 function head() {
     return `
+    <title>Nikos' Blog</title>
+
     <meta name="keywords" content="blog,processing,Nikolaos, Pappas, visualisation, visualization, music, project, programming" />
     `;
 }
@@ -50,7 +52,7 @@ function render() {
         card("Electronics", "/electronics.html", "images/electronics.jpg", 'flex-2 not-ready-card'),
         card("Processing", "./processing.html", "images/processing.jpg", 'flex-1 not-ready-card'),
         card("Gravity Simulator", "/post/gravity-simulator.html", "images/gravity-simulator.jpg", 'flex-1'),
-        card("Processing sketches in an IDE", "/post/processing-sketches-in-an-ide", "images/processing-intellij.jpg", 'flex-3'),
+        card("Processing sketches in an IDE", "/post/processing-sketches-in-an-ide.html", "images/processing-intellij.jpg", 'flex-3'),
     ].join(""), {
         className: 'cards-wrapper content'
     });

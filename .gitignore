@@ -9,6 +9,13 @@ lerna-debug.log*
 # MacOS
 .DS_Store
 
+*.jpeg
+*.jpg
+*.png
+*.xcf
+
+originals/
+
 # Temp
 intermediate/
 

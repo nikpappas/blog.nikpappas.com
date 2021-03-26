@@ -131,7 +131,7 @@ async function getContent() {
             // Component(H2, "How?"),
             // Component(ARTICLE, "Tassacassasd doias odihaso dihaos idhaos idhaos idhaos ihdao sihdo iashdo isahdo ashdo  asdi aho "),
             Component(H2, "Processing visualisation"),
-            Component(ARTICLE, `As this is getting rather big I'd rather not get into deatails as in to how to run Processing scetches as Standalone java apps I have made <a href="/post/processing-sketches-in-an-ide">another post</a> and <a targer="blank" href="https://github.com/nikpappas/processing-gradle-bootstrap">a bootsttrap github project</a> just for that. But I couldn't not put the code here.`),
+            Component(ARTICLE, `As this is getting rather big I'd rather not get into deatails as in to how to run Processing scetches as Standalone java apps I have made <a href="/post/processing-sketches-in-an-ide.html">another post</a> and <a targer="blank" href="https://github.com/nikpappas/processing-gradle-bootstrap">a bootstrap github project</a> just for that. But I couldn't not put the code here.`),
             Component(CODE, `
             
             //...
@@ -188,7 +188,11 @@ async function getContent() {
 
 async function render() {
     const content = await getContent();
-    await pageRender.render("./intermediate/post/gravity-simulator.html", content, postHead());
+    const head = postHead(`
+        <title>Gravity Simulator</title>
+        <meta name="keywords" content="gravity,particle,processing,physics,programming" />
+        `)
+    await pageRender.render("./intermediate/post/gravity-simulator.html", content, head);
 }
 
 module.exports = {

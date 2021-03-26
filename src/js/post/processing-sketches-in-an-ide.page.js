@@ -44,7 +44,7 @@ function getContent() {
 
 async function render() {
     const content = getContent();
-    await pageRender.render("./intermediate/post/processing-sketches-in-an-ide.html", content, postHead());
+    await pageRender.render("./intermediate/post/processing-sketches-in-an-ide.html", content, postHead(`<title>Processing sketches in an IDE</title>`));
 }
 
 
