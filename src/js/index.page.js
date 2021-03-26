@@ -27,6 +27,7 @@ function card(title, url, backgroundUrl, flexClass) {
 
             [Component(PICTURE, [Component(IMG, '', {
                     src: backgroundUrl,
+                    alt: title,
                     className: 'card-img',
                 })]),
                 Component(DIV, [Component(H2, title)], {
@@ -44,10 +45,12 @@ function card(title, url, backgroundUrl, flexClass) {
 function render() {
 
     const cards = createElement(DIV, [
-        card("Music", "music.html", "images/music.jpg", 'flex-1'),
-        card("Visualisation", "visualisation.html", "images/visualisation.jpeg", 'flex-2'),
-        card("Electronics", "electronics.html", "images/electronics.jpeg", 'flex-2'),
-        card("Processing", "processing.html", "images/processing.jpeg", 'flex-1'),
+        card("Music", "music.html", "images/music.jpg", 'flex-1 not-ready-card'),
+        card("Visualisation", "/visualisation.html", "images/visualisation.jpg", 'flex-2 not-ready-card'),
+        card("Electronics", "/electronics.html", "images/electronics.jpg", 'flex-2 not-ready-card'),
+        card("Processing", "./processing.html", "images/processing.jpg", 'flex-1 not-ready-card'),
+        card("Gravity Simulator", "/post/gravity-simulator.html", "images/gravity-simulator.jpg", 'flex-1'),
+        card("Processing sketches in an IDE", "/post/processing-sketches-in-an-ide", "images/processing-intellij.jpg", 'flex-3'),
     ].join(""), {
         className: 'cards-wrapper content'
     });

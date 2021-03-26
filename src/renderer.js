@@ -168,37 +168,42 @@ render();
 
 
 async function render() {
-    const files = await (await walk("./src/js"))
+    const files = (await walk("./src/js"))
         .filter(f => f.endsWith(".page.js"))
         .map(f => ({
             in: f.replace("src", "."),
             out: f.replace("src/js/", "").replace(".page.js", ".html")
-        }))
-        .forEach(f => {
-            require(f.in).render();
-            minify(`./intermediate/${f.out}`, (x) => mini.minify(x, mini_opts), `./out/${f.out}`);
-        });
+        }));
+
+
+
+    await files.forEach(async f => {
+        const jsSpec = require(f.in);
+        await jsSpec.render();
+        minify(`./intermediate/${f.out}`, (x) => mini.minify(x, mini_opts), `./out/${f.out}`);
+    });
 
     // minify("./client/script.js", UglifyJS.minify, "./rendering/out/script.js");
     const css = await (await walk("./src/client"))
         .filter(f => f.endsWith('.css'));
 
     css.forEach(f => {
-            minify(f, cssMini, f.replace('src/client', 'out'));
-        })
+        minify(f, cssMini, f.replace('src/client', 'out'));
+    })
 }
 
 
 
 function minify(file, func, fileOut) {
+    console.log(`${file} -> ${fileOut}`);
     const template = fs.readFileSync(file);
-    console.log(template);
+    // console.log(template);
     const minifiedcode = func(template.toString());
     if (minifiedcode.error) {
         throw Error(minifiedcode.error);
     }
     let outCode = minifiedcode.code ? minifiedcode.code : minifiedcode;
-    console.log(outCode);
+    // console.log(outCode);
     const parentDir = getParentDir(fileOut);
     createDirIfNotExists(parentDir);
     fs.writeFileSync(fileOut, outCode);

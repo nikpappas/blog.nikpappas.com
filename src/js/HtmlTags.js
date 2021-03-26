@@ -9,6 +9,8 @@ const tags = {
     H3: 'h3',
     IMG: 'img',
     PICTURE: 'picture',
+    P: 'p',
+    CODE: 'code',
 }
 
 module.exports = {
