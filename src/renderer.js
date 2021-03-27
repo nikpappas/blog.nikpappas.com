@@ -168,11 +168,11 @@ render();
 
 
 async function render() {
-    const files = (await walk("./src/js"))
+    const files = (await walk(path.join("src","js")))
         .filter(f => f.endsWith(".page.js"))
         .map(f => ({
             in: f.replace("src", "."),
-            out: f.replace("src/js/", "").replace(".page.js", ".html")
+            out: f.replace(path.join("src","js"), "").replace(".page.js", ".html")
         }));
 
 
@@ -180,15 +180,15 @@ async function render() {
     await files.forEach(async f => {
         const jsSpec = require(f.in);
         await jsSpec.render();
-        minify(`./intermediate/${f.out}`, (x) => mini.minify(x, mini_opts), `./out/${f.out}`);
+        minify(path.join('intermediate',f.out), (x) => mini.minify(x, mini_opts), path.join('out',f.out));
     });
 
     // minify("./client/script.js", UglifyJS.minify, "./rendering/out/script.js");
-    const css = await (await walk("./src/client"))
+    const css = await (await walk(path.join("src","client")))
         .filter(f => f.endsWith('.css'));
 
     css.forEach(f => {
-        minify(f, cssMini, f.replace('src/client', 'out'));
+        minify(f, cssMini, f.replace(path.join('src','client'), 'out'));
     })
 }
 
@@ -205,6 +205,7 @@ function minify(file, func, fileOut) {
     let outCode = minifiedcode.code ? minifiedcode.code : minifiedcode;
     // console.log(outCode);
     const parentDir = getParentDir(fileOut);
+    console.log(parentDir);
     createDirIfNotExists(parentDir);
     fs.writeFileSync(fileOut, outCode);
     console.log("++++++++++++++++++++++++++++++++++++++++++++");
@@ -223,8 +224,7 @@ async function walk(dir, files = []) {
 }
 
 function getParentDir(file) {
-    return file.split("/").slice(0, -1).join("/");
-
+    return path.parse(file).dir;
 }
 
 function createDirIfNotExists(dir) {
