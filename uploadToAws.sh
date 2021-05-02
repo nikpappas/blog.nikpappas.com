@@ -7,6 +7,10 @@ for d in ${DIST}/post/* ; do
     gzip -9 -c ${d} | aws s3 cp - s3://blog.nikpappas.com/post/`basename $d` --acl "public-read" --content-encoding "gzip" --content-type "text/html" --profile "papakos_1"
 done
 
+gzip -9 -c ./out/sitemap.xml | aws s3 cp - s3://blog.nikpappas.com/sitemap.xml --acl "public-read" --content-encoding "gzip" --content-type "text/xml" --profile "papakos_1"
+gzip -9 -c ./out/robots.txt | aws s3 cp - s3://blog.nikpappas.com/robots --acl "public-read" --content-encoding "gzip" --content-type "text/plain" --profile "papakos_1"
+
+
 # for d in ${DIST}/*.css ; do
 #     echo "$d"
 #     echo `basename $d`

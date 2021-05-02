@@ -5,7 +5,8 @@
   "main": "src/js/index.js",
   "scripts": {
     "start": "node node_modules/serve/bin/serve out/",
-    "render": "npm run clean && node ./src/renderer.js && cp -r images out && cp -r videos out && cp -r fonts out",
+    "render": "npm run clean && node ./src/renderer.js && cp -r images out && cp -r videos out && cp -r fonts out && npm run sitemap",
+    "sitemap": "node src/sitemap.js",
     "clean": "touch out/test.js && rm -r out/*",
     "watch": "npm-watch render",
     "start:prod": "npm run watch & npm start",

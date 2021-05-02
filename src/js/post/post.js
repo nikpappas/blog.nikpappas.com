@@ -12,6 +12,7 @@ const {
 
 function postHead(extra) {
     const base = `
+    <meta property="og:type" content="article" />
     <link rel="preload" href="/post.css" as="style">
     <link rel="stylesheet" href="/post.css">
     `;

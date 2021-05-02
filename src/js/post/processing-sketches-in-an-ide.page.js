@@ -44,7 +44,15 @@ function getContent() {
 
 async function render() {
     const content = getContent();
-    await pageRender.render("./intermediate/post/processing-sketches-in-an-ide.html", content, postHead(`<title>Processing sketches in an IDE</title>`));
+    await pageRender.render("./intermediate/post/processing-sketches-in-an-ide.html", content, postHead(`
+    <title>Processing sketches in an IDE</title>
+
+    <meta property="og:image" content="https://blog.nikpappas.com/images/processing-intellij.jpg" />
+    <meta property="og:description" content="A java (gradle) bootstrap projetc to allow developers to harness the power of both the processin library and the that of an IDE." />
+    <meta property="og:url" content="https://blog.nikpappas.com/post/gravity-simulator.html" />        
+
+    <meta name="keywords" content="processing,programming,iintellij" />
+    `));
 }
 
 
