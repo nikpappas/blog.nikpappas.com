@@ -17,15 +17,15 @@ gzip -9 -c ./out/robots.txt | aws s3 cp - s3://blog.nikpappas.com/robots --acl "
 #     gzip -9 -c ${d} | aws s3 cp - s3://blog.nikpappas.com/`basename $d` --acl "public-read" --content-encoding "gzip" --content-type "text/css" --profile "papakos_1"
 # done
 
-# for d in ${DIST}/images/*.jpg ; do
-#     echo "$d"
-#     if [[ "$d" == *"originals"* ]]; then
-#         echo "Ignoring $d."
-#     else
-#         echo `basename $d`
-#         gzip -9 -c ${d} | aws s3 cp - s3://blog.nikpappas.com/images/`basename $d` --acl "public-read" --content-encoding "gzip" --content-type "image/jpeg" --profile "papakos_1"
-#     fi
-# done
+for d in ${DIST}/images/*.jpg ; do
+    echo "$d"
+    if [[ "$d" == *"originals"* ]]; then
+        echo "Ignoring $d."
+    else
+        echo `basename $d`
+        gzip -9 -c ${d} | aws s3 cp - s3://blog.nikpappas.com/images/`basename $d` --acl "public-read" --content-encoding "gzip" --content-type "image/jpeg" --profile "papakos_1"
+    fi
+done
 
 # for d in ${DIST}/images/*.png ; do
 #     echo "$d"

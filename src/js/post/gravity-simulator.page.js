@@ -191,7 +191,7 @@ async function render() {
     const head = postHead(`
         <title>Gravity Simulator</title>
 
-        <meta property="og:image" content="https://blog.nikpappas.com/images/gravity-simulator.jpg" />
+        <meta property="og:image" content="https://blog.nikpappas.com/images/gravity-simulator-social.jpg" />
         <meta property="og:description" content="A java gravity simulator that allows visualisation through processing." />
         <meta property="og:url" content="https://blog.nikpappas.com/post/gravity-simulator.html" />        
 

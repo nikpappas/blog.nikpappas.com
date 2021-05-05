@@ -178,6 +178,7 @@ async function render() {
 
 
     await files.forEach(async f => {
+        console.log(f.in);
         const jsSpec = require(f.in);
         await jsSpec.render();
         minify(`./intermediate/${f.out}`, (x) => mini.minify(x, mini_opts), `./out/${f.out}`);

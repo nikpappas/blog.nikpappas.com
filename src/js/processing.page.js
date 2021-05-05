@@ -28,14 +28,15 @@ function head() {
 
 function getContent() {
     return createElement(DIV, [
-        Banner('/images/music.jpg', 'Music'),
+        Banner('/images/processing.jpg', 'Processing'),
         Component(P, "Lorem ispussdnalsknd  sodna osidn oaimsdkamnsodin aosidjoaisjd oaisj.Lorem ispussdnalsknd  sodna osidn oaimsdkamnsodin aosidjoaisjd oaisj.", {
             className: 'content'
         }),
         Component(SECTION, [
             Component(DIV, [
-                card("Analog Synthesizer", "/post/analog-synthesizer.html", "images/visualisation.jpg", 'flex-1'),
-                card("Java Synthesizer", "/post/digital-java-synthesizer.html", "images/DigitalJavaSynth.jpg", 'flex-2'),
+                card("Gravity Simulator", "/post/gravity-simulator.html", "images/gravity-simulator.jpg", 'flex-1'),
+                card("Processing sketches in an IDE", "/post/processing-sketches-in-an-ide.html", "images/processing-intellij.jpg", 'flex-2'),        
+                card("Java Synthesizer", "/post/digital-java-synthesizer.html", "images/DigitalJavaSynth.jpg", 'flex-full'),
             ].join(""), {
                 className: 'cards-wrapper content'
             })
@@ -49,7 +50,7 @@ function getContent() {
 function render() {
     const content = getContent();
 
-    pageRender.render("./intermediate/music.html", content, head());
+    pageRender.render("./intermediate/processing.html", content, head());
 }
 
 module.exports = {

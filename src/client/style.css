@@ -1,26 +1,28 @@
 @font-face {
     font-family: NotoSans;
-    src: url(fonts/NotoSansJP-Regular.otf);
+    src: local(NotoSans), url(fonts/NotoSansJP-Regular.otf);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-display: swap;
 }
 
 body {
     color: #323232;
-    font-family: NotoSans;
+    font-family: NotoSans, Arial, Helvetica, sans-serif;
 }
 
 a {
-    color: #793e3e;
+    color: #176c60;
     text-decoration: none;
 }
 
 a:hover {
-    border-bottom: 2px solid #3f0e0e;
+    color: #0e3f38;
+    border-bottom: 2px solid #0e3f38;
 }
 
 .card a {
@@ -31,8 +33,14 @@ a:hover>h2 {
     border-bottom: 2px solid rgb(146, 14, 10);
 }
 
+.index-banner img {
+    width: 100%;
+    height: auto;
+}
+
+
 .content {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 16px;
     margin-top: 2em;
@@ -45,12 +53,33 @@ a:hover>h2 {
 }
 
 .card {
-    max-height: 340px;
+    max-height: 380px;
     margin: 4px 4px;
     /* border: 2px #7d1818 solid; */
+    border-radius: 3px;
 
     overflow: hidden;
     flex-basis: 220px;
+    transition: all ease .3s;
+}
+
+.card:hover {
+    filter: brightness(0.6);
+    background-color: #f2f2f2;
+}
+
+.not-ready-card:hover {
+    cursor: default !important;
+}
+.not-ready-card:hover::after {
+    content: "Not ready yet";
+    display: block;
+    font-size: 2em;
+    margin: 8px;
+    position: absolute;
+    transform: translate(0%, -300%);
+    z-index: 10;
+    color: black;
 }
 
 .card-img {
@@ -69,12 +98,13 @@ a:hover>h2 {
     color: white;
 }
 
-.card h2 {
+.card h3 {
     margin: 0.5em;
 }
 
 .flex-1 {
     flex-grow: 5;
+    max-width: 300px;
 }
 
 .flex-2 {
@@ -83,4 +113,23 @@ a:hover>h2 {
 
 .flex-3 {
     flex-grow: 67;
+}
+
+.flex-full {
+    width: 100%;
+    flex-basis: unset;
+}
+
+.heading-main {
+    margin: 1em 4px 0.5em 4px;
+    background: #176c60;
+    color: white;
+    padding: 0.5em;
+    border-radius: 3px;
+}
+
+.card.logo img {
+    height: 200px;
+    padding-bottom: 70px;
+    object-fit: contain;
 }

@@ -11,7 +11,7 @@ function render(outFile, body, head) {
         .replace("${HEAD}", head);
     const parentDir = getParentDir(outFile);
     createDirIfNotExists(parentDir);
-
+    console.log("Writing file", outFile);
     fs.writeFileSync(outFile, out);
 
 }
