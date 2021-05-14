@@ -1,7 +1,7 @@
-@font-face {
+/* @font-face {
     font-family: NotoSans;
     src: local(NotoSans), url(fonts/NotoSansJP-Regular.otf);
-}
+} */
 
 * {
     margin: 0;
@@ -10,9 +10,57 @@
     font-display: swap;
 }
 
+header {
+    text-align: left;
+    background-color: #202121;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    transition: all 0.6s ease;
+    z-index: 3;
+}
+.index-logo-title{
+    color: white;
+    transform: scaleX(.85);
+    font-weight: 200;
+    display: inline-block;
+}
+
 body {
     color: #323232;
-    font-family: NotoSans, Arial, Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 1.35;
+}
+
+@media (min-width: 700px) {
+    body {
+        font-weight: 100;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-weight: bolder;
+    }
+}
+
+@media (max-width: 699.9px) {
+    body {
+        font-weight: 400;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-weight: 500;
+    }
+
+    a {
+        font-weight: bolder;
+    }
 }
 
 a {
@@ -20,9 +68,34 @@ a {
     text-decoration: none;
 }
 
+.img-link {
+    border: none !important;
+    transition: all ease 0.3s;
+}
+
+.img-link:hover {
+    opacity: .7;
+}
+
+.back-to-main {
+    font-size: 60px;
+    transition: all ease .4s;
+    display: inline-block;
+    margin-top: 0 !important;
+}
+
+.back-to-main:hover {
+    text-decoration: none !important;
+    border: none !important;
+    transform: scale(1.2);
+    color: #961c6d;
+
+}
+
 a:hover {
     color: #0e3f38;
     border-bottom: 2px solid #0e3f38;
+    font-weight: bolder;
 }
 
 .card a {
@@ -33,9 +106,11 @@ a:hover>h2 {
     border-bottom: 2px solid rgb(146, 14, 10);
 }
 
-.index-banner img {
+.index-banner img.banner-img {
     width: 100%;
-    height: auto;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
 }
 
 
@@ -54,6 +129,7 @@ a:hover>h2 {
 
 .card {
     max-height: 380px;
+    min-height: 250px;
     margin: 4px 4px;
     /* border: 2px #7d1818 solid; */
     border-radius: 3px;
@@ -71,6 +147,7 @@ a:hover>h2 {
 .not-ready-card:hover {
     cursor: default !important;
 }
+
 .not-ready-card:hover::after {
     content: "Not ready yet";
     display: block;
@@ -100,19 +177,23 @@ a:hover>h2 {
 
 .card h3 {
     margin: 0.5em;
+    font-weight: 300;
 }
+h3 {
+    font-size: 1.25em;
+} 
+
 
 .flex-1 {
-    flex-grow: 5;
-    max-width: 300px;
+    flex-grow: 1;
 }
 
 .flex-2 {
-    flex-grow: 9;
+    flex-grow: 15;
 }
 
 .flex-3 {
-    flex-grow: 67;
+    flex-grow: 120;
 }
 
 .flex-full {

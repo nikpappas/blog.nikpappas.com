@@ -4,10 +4,13 @@ const {
 
 const {
     H1,
+    H2,
     DIV,
     PICTURE,
     IMG,
     ANCHOR,
+    SECTION,
+    P,
 } = require('../HtmlTags');
 
 function postHead(extra) {
@@ -35,7 +38,8 @@ function Banner(imgSrc, title) {
         ]),
         Component(H1, title, {
             className: 'post-title'
-        })
+        }),
+        Component(ANCHOR, "←", {href: "/", className: "back-to-main content"}),
     ], {
         className: 'post-banner'
     });
@@ -46,16 +50,25 @@ function GithubRepoLink(url) {
     return Component(ANCHOR, [
         Component(IMG, '', {
             src: '/images/GitHub-Mark-32px.png',
-            alt: "Github repository"
+            alt: "Github repository",
         })
     ], {
         href: url,
-        target:"blank"
+        target:"blank",
+        className: 'img-link',
     })
 }
+
+const Corrections = Component(SECTION, [
+    Component(H2,"Comments"),
+    Component(P,
+        `Because a blog without feedback would be lifeless, for any ideas corrections or any kind of comment, I'm happy to have your e-mails at <a href="mailto:hello@nikpappas.com">hello@nikpappas.com</a>`,
+    )
+]);
 
 module.exports = {
     postHead,
     Banner,
     GithubRepoLink,
+    Corrections,
 }

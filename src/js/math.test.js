@@ -1,8 +1,8 @@
 const Math = require('./math');
 
 describe(__filename, () => {
-    it('renderds math from tex', () => {
-        const res = Math.typeset('E = mc^2');
-        console.log(res);
+    it('renderds math from tex', async () => {
+        const res = await Math.typeset('E = mc^2');
+        expect(res).toMatchSnapshot();
     });
 });

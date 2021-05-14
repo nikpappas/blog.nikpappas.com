@@ -1,15 +1,18 @@
 const {
     DIV,
-    ANCHOR,
     H3,
     H2,
-    IMG,
+    H1,
     PICTURE,
-    SECTION
+    SECTION,
+    HEADER,
 } = require('./HtmlTags');
 const {
     createElement,
-    Component
+    Component,
+    A,
+    Div,
+    Img
 } = require('./HtmlUtils');
 const pageRender = require('./pageRender');
 
@@ -22,15 +25,30 @@ function head() {
     `;
 }
 
+const Header = Component(HEADER, [
+    Div([
+        Div( [
+            Img({
+                src: '/images/logo-outer128.png',
+                alt: `Nikolaos Pappas' logo`,
+                height:"94",
+            }),
+            Component(H1,'Nikolaos Pappas', {className:'index-logo-title'}),
+
+        ], {
+            className: 'header-left'
+        }),
+    ])
+]);
+
 const banner = (body) =>
     createElement(SECTION, body)
 
 
 function card(title, url, backgroundUrl, flexClass) {
     return createElement(DIV,
-        [Component(ANCHOR,
-
-            [Component(PICTURE, [Component(IMG, '', {
+        [A(
+            [Component(PICTURE, [Img({
                     src: backgroundUrl,
                     alt: title,
                     className: 'card-img',
@@ -38,7 +56,7 @@ function card(title, url, backgroundUrl, flexClass) {
                     width: '250',
                     loading: 'lazy'
                 })]),
-                Component(DIV, [Component(H3, title)], {
+                Div( [Component(H3, title)], {
                     className: "card-title"
                 })
             ], {
@@ -65,8 +83,9 @@ function render() {
         }),
         card("Gravity Simulator", "/post/gravity-simulator.html", "/images/gravity-simulator.jpg", 'flex-1'),
         card("Processing sketches in an IDE", "/post/processing-sketches-in-an-ide.html", "/images/processing-intellij.jpg", 'flex-3'),
-        card("Analog Synthesizer", "/post/analog-synthesizer.html", "/images/visualisation-thumb.jpg", 'flex-3'),
-        card("Java Synthesizer", "/post/digital-java-synthesizer.html", "/images/DigitalJavaSynth.jpg", 'flex-1'),
+        card("Analog Synthesizer", "/post/analog-synthesizer.html", "/images/visualisation-thumb.jpg", 'flex-2'),
+        card("Java Synthesizer", "/post/digital-java-synthesizer.html", "/images/DigitalJavaSynth.jpg", 'flex-2'),
+        card("Game of Life 3D", "/post/digital-java-synthesizer.html", "/images/GOL6073.jpg", 'flex-2 not-ready-card'),
         createElement(H2, "Me", {
             className: "flex-full heading-main"
         }),
@@ -79,10 +98,12 @@ function render() {
         className: 'cards-wrapper content'
     });
     const out = banner(createElement(DIV, [
-        Component(IMG, '', {
+        Header,
+        Img( {
             src: "/images/GOL6073.jpg",
             alt: "Game of Life 3D",
             height: "300",
+            className:'banner-img',
         })
     ], {
         className: "index-banner"
@@ -92,7 +113,8 @@ function render() {
 }
 
 module.exports = {
-    render: render,
-    card: card,
-    banner: banner,
+    render,
+    card,
+    banner,
+    Header,
 }

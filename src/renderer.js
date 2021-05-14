@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require("path");
-const babel = require('babel-core');
 const mini = require('html-minifier');
-const UglifyJS = require('uglify-js');
 const cssMini = require('css-minify');
 
 const mini_opts = {

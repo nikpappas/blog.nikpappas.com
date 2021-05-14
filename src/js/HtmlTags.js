@@ -1,7 +1,11 @@
 const tags = {
     SECTION: 'SECTION',
     ARTICLE: 'article',
+    AUDIO: 'audio',
+    SOURCE: 'source',
     DIV: 'div',
+    FIGURE: 'figure',
+    FIGCAPTION: 'figcaption',
     SPAN: 'span',
     ANCHOR: 'a',
     H1: 'h1',
@@ -11,6 +15,7 @@ const tags = {
     PICTURE: 'picture',
     P: 'p',
     CODE: 'code',
+    HEADER: 'header',
 }
 
 module.exports = {
