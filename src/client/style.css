@@ -19,9 +19,15 @@ header {
     transition: all 0.6s ease;
     z-index: 3;
 }
+.header-left{
+    padding: 10px;
+    padding-left: 5%;
+}
 .index-logo-title{
+    font-size: 2em;
     color: white;
-    transform: scaleX(.85);
+    transform: scaleX(.75);
+    font-variant: small-caps;
     font-weight: 200;
     display: inline-block;
 }

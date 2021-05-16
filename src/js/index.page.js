@@ -31,6 +31,7 @@ const Header = Component(HEADER, [
             Img({
                 src: '/images/logo-outer128.png',
                 alt: `Nikolaos Pappas' logo`,
+                style:'vertical-align:bottom',
                 height:"94",
             }),
             Component(H1,'Nikolaos Pappas', {className:'index-logo-title'}),

@@ -1,5 +1,4 @@
-.post-banner {
-}
+.post-banner {}
 
 .post-banner picture {
     height: 300px;
@@ -50,18 +49,25 @@ code {
     position: relative;
 }
 
+.withmp3 img {
+    padding: 58px 16px;
+}
+
+
+
 .audio {
     position: absolute;
     top: 0;
     display: block;
     width: 100%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
 }
 
-figure{
+figure {
     /* overflow: scroll; */
 }
-.post-image{
+
+.post-image {
     width: 100%;
     /* min-width: 600px; */
     margin: 1em auto;
