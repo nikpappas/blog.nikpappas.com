@@ -13,7 +13,8 @@ const pageRender = require('../pageRender');
 const {
     postHead,
     Banner,
-    GithubRepoLink
+    GithubRepoLink,
+    Corrections
 } = require('./post');
 
 
@@ -36,6 +37,7 @@ function getContent() {
                 <a href="https://github.com/nikpappas/processing-gradle-bootstrap" target="blank">gradle project</a>.
                 `)
             ]),
+            Corrections,
         ], {
             className: 'post content'
         })
@@ -44,14 +46,15 @@ function getContent() {
 
 async function render() {
     const content = getContent();
-    await pageRender.render("./intermediate/post/processing-sketches-in-an-ide.html", content, postHead(`
-    <title>Processing sketches in an IDE</title>
-
-    <meta property="og:image" content="https://blog.nikpappas.com/images/processing-intellij.jpg" />
-    <meta property="og:description" content="A java (gradle) bootstrap projetc to allow developers to harness the power of both the processin library and the that of an IDE." />
-    <meta property="og:url" content="https://blog.nikpappas.com/post/gravity-simulator.html" />        
-
+    await pageRender.render("./intermediate/post/processing-sketches-in-an-ide.html", content, postHead({
+        title: 'Processing sketches in an IDE',
+        description: 'A java (gradle) bootstrap project to allow developers to harness the power of both processing and that of an IDE.',
+        imageUrl: 'https://blog.nikpappas.com/images/social/processing-intellij.jpg'
+    }, `
+    <meta property="og:url" content="https://blog.nikpappas.com/post/processing-sketches-in-an-ide.html" />        
     <meta name="keywords" content="processing,programming,iintellij" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="600" />
     `));
 }
 

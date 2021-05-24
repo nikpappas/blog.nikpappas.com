@@ -13,8 +13,24 @@ const {
     P,
 } = require('../HtmlTags');
 
-function postHead(extra) {
+function postHead({
+    title,
+    description,
+    imageUrl
+}, extra) {
     const base = `
+    <title>${title}</title>
+    <meta content="${title}" property="og:title" />
+    <meta content="${title}" property="twitter:title" />
+
+    <meta property="og:type" content="website" />
+    <meta name="description" content="${description}">
+    <meta property="og:description" content="${description}" />
+    <meta property="twitter:description" content="${description}" />
+    <meta property="og:image" content="${imageUrl}" />
+    <meta property="twitter:image" content="${imageUrl}" />
+    <meta content="summary_large_image" name="twitter:card" />
+
     <meta property="og:type" content="article" />
     <link rel="preload" href="/post.css" as="style">
     <link rel="stylesheet" href="/post.css">
@@ -39,7 +55,10 @@ function Banner(imgSrc, title) {
         Component(H1, title, {
             className: 'post-title'
         }),
-        Component(ANCHOR, "←", {href: "/", className: "back-to-main content"}),
+        Component(ANCHOR, "←", {
+            href: "/",
+            className: "back-to-main content"
+        }),
     ], {
         className: 'post-banner'
     });
@@ -54,13 +73,13 @@ function GithubRepoLink(url) {
         })
     ], {
         href: url,
-        target:"blank",
+        target: "blank",
         className: 'img-link',
     })
 }
 
 const Corrections = Component(SECTION, [
-    Component(H2,"Comments"),
+    Component(H2, "Comments"),
     Component(P,
         `Because a blog without feedback would be lifeless, for any ideas corrections or any kind of comment, I'm happy to have your e-mails at <a href="mailto:hello@nikpappas.com">hello@nikpappas.com</a>`,
     )

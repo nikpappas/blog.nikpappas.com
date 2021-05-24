@@ -4,6 +4,9 @@ const {
     ARTICLE,
     H2,
     P,
+    FIGCAPTION,
+    FIGURE,
+    IMG
 } = require('../HtmlTags');
 const {
     createElement,
@@ -13,7 +16,8 @@ const pageRender = require('../pageRender');
 const {
     postHead,
     Banner,
-    GithubRepoLink
+    GithubRepoLink,
+    Corrections
 } = require('./post');
 
 
@@ -22,37 +26,48 @@ function getContent() {
     return createElement(DIV, [
         Banner('/images/DigitalJavaSynth.jpg', 'Digital Java Synthesizer'),
         Component(SECTION, [
-            // GithubRepoLink('https://github.com/nikpappas/processing-gradle-bootstrap'),
+            GithubRepoLink('https://github.com/nikpappas/simple-java-synthesizer'),
             Component(H2, "Context"),
             Component(ARTICLE, [
                 Component(P, `
-                <a href="https://processing.org/" target="blank">Processing</a> has been a very nice effort to make all this java swing nonsense accesible to anyone.
-                Kudos to the team, honestly.
-                The editing software, though, I have found lacking and frustrating. I found this as something quite normal
-                since it's an open source initiattive and priorities have been elsewhere (ie make the library more robust than implement nice-to-have features for the editor).
+                    I love synthesizers, I love Java. This was part of an effort to understand waves and sound composition, as well as the Java MIDI library.
                 `),
                 Component(P, `
-                Now imagine you can harvest botht the powers given to you by the Processing library and an awesome IDE (in this case I've chosen IntelliJ community eddition) using the processing library in a 
-                <a href="https://github.com/nikpappas/processing-gradle-bootstrap" target="blank">gradle project</a>.
-                `)
+                    This is a simple synthesizer project that, let's be honest is no polished but can give you a few hours of fun.
+    
+                    It produces waves (sine, square, tri, saw, saturated sine) and gives you the ability to mix however many of them your processor (or monitor real-estate) can handle.
+                    It also gives you the ability to detune each one of them.
+                `),
+                Component(FIGURE, [
+                    Component(IMG, '', {
+                        src: '/images/waveComposition.png',
+                        alt: 'Wave composition',
+                        className: "post-image",
+                    }),
+                    Component(FIGCAPTION, 'Composition of the main sine wave and two consequtive harmonics (again sine)')
+                ]),
             ]),
+            Corrections,
         ], {
             className: 'post content'
-        }) 
+        })
     ]);
 }
 
 async function render() {
     console.log("DIGITAL SYNTH");
     const content = getContent();
-    await pageRender.render("./intermediate/post/digital-java-synthesizer.html", content, postHead(`
-    <title>Digital Java Synthesizer</title>
+    await pageRender.render("./intermediate/post/digital-java-synthesizer.html", content, postHead({
+        title: 'Digital Java Synthesizer',
+        description: 'The simplest java wave composition software that also works with your midi controller.',
+        imageUrl: 'https://blog.nikpappas.com/images/social/wave-composition.jpg'
+    }, `
 
-    <meta property="og:image" content="https://blog.nikpappas.com/images/DigitalJavaSynth.jpg" />
-    <meta property="og:description" content="A java (gradle) bootstrap projetc to allow developers to harness the power of both the processin library and the that of an IDE." />
-    <meta property="og:url" content="https://blog.nikpappas.com/post/digital-java-synthesizer.html" />        
-
-    <meta name="keywords" content="processing,programming,iintellij" />
+        <meta name="keywords" content="analog, synth, sunthesizer, transistors, capacitors, reverse avalanche" />
+        <meta property="og:image:width" content="1080" />
+        <meta property="og:image:height" content="1080" />        
+        <meta property="og:url" content="https://blog.nikpappas.com/post/digital-java-synthesizer.html" />        
+        <meta name="keywords" content="midi, synthesizer, composition, wave, sine, tri, saw,processing,programming,java" />
     `));
 }
 

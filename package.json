@@ -11,7 +11,7 @@
     "clean": "touch out/test.js && rm -r out/*",
     "watch": "npm-watch render",
     "start:prod": "npm run watch & npm start",
-    "upload": "./uploadToAws.sh",
+    "upload": "./bin/uploadToAws.sh",
     "test": "jest",
     "optimise-svg": "node ./src/svgOptimiser.js"
   },

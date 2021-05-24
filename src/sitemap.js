@@ -8,8 +8,7 @@ const renderer = require("./renderer");
 async function run() {
     const files = await renderer.walk("out", []);
     const htmls = files.filter(x =>
-            x.endsWith(".html") && 
-            x.includes('post')
+            x.endsWith(".html")
         )
         .map(x => `
         <url>

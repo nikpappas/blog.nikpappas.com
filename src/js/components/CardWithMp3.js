@@ -28,7 +28,8 @@ function CardWithMp3(title, backgroundUrl, flexClass, audioSource) {
                 type: 'audio/mpeg'
             })], {
                 className: "audio",
-                controls: true
+                controls: true,
+                preload:'none'
             }),
         ]),
             Component(DIV, [Component(H3, title)], {

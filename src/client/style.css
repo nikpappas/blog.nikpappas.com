@@ -9,6 +9,10 @@
     box-sizing: border-box;
     font-display: swap;
 }
+.notfound{
+    text-align: center;
+    line-height: 2;
+}
 
 header {
     text-align: left;
@@ -16,14 +20,15 @@ header {
     width: 100%;
     position: fixed;
     top: 0;
-    transition: all 0.6s ease;
     z-index: 3;
 }
-.header-left{
+
+.header-left {
     padding: 10px;
     padding-left: 5%;
 }
-.index-logo-title{
+
+.index-logo-title {
     font-size: 2em;
     color: white;
     transform: scaleX(.75);
@@ -72,6 +77,26 @@ body {
 a {
     color: #176c60;
     text-decoration: none;
+}
+
+.tabs {
+    display: block;
+    list-style: none;
+}
+
+.tabs a, p a {
+    box-sizing: content-box;
+}
+
+.tabs li {
+    display: inline-block;
+    margin: 1em 16px;
+    font-size: 1.2em;
+}
+
+.tabs .active {
+    background-origin: padding-box;
+    border-bottom: 2px solid #0e3f38;
 }
 
 .img-link {
@@ -185,9 +210,10 @@ a:hover>h2 {
     margin: 0.5em;
     font-weight: 300;
 }
+
 h3 {
     font-size: 1.25em;
-} 
+}
 
 
 .flex-1 {

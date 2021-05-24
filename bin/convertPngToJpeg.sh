@@ -1,0 +1,1 @@
+sips -s format jpeg -s formatOptions 70 $1 --out "${i%png}jpg"

@@ -3,14 +3,19 @@ const {
     H2,
     SECTION,
     ARTICLE,
-    ANCHOR,    P,
+    ANCHOR,
+    P,
     CODE,
+    FIGURE,
+    FIGCAPTION,
+    VIDEO,
 } = require("../HtmlTags");
 
 const {
     postHead,
     Banner,
     GithubRepoLink,
+    Corrections
 } = require('./post');
 
 
@@ -131,7 +136,9 @@ async function getContent() {
             // Component(H2, "How?"),
             // Component(ARTICLE, "Tassacassasd doias odihaso dihaos idhaos idhaos idhaos ihdao sihdo iashdo isahdo ashdo  asdi aho "),
             Component(H2, "Processing visualisation"),
-            Component(ARTICLE, `As this is getting rather big I will not get into deatails as in to how to run Processing scetches as Standalone java apps I have made <a href="/post/processing-sketches-in-an-ide.html">another post</a> and <a targer="blank" href="https://github.com/nikpappas/processing-gradle-bootstrap">a bootstrap github project</a> just for that. But I couldn't not put the code here.`),
+            Component(ARTICLE, [
+                Component(P, `As this is getting rather big I will not get into deatails as in to how to run Processing scetches as Standalone java apps I have made <a href="/post/processing-sketches-in-an-ide.html">another post</a> and <a target="blank" href="https://github.com/nikpappas/processing-gradle-bootstrap">a bootstrap github project</a> just for that. But I couldn't not put the code here.`)
+            ]),
             Component(CODE, `
             
             //...
@@ -177,6 +184,29 @@ async function getContent() {
             `.replace(/</g, LT_HTML)
                 .replace(/>/g, GT_HTML)
                 .replace(/\n/g, '<br/>')),
+            Component(P,
+                `
+                    After a bit of trial and error trying to give style to this visualisation I ended up with this...
+                    `
+            ),
+            Component(FIGURE, [
+                Component(VIDEO, [
+                    Component('source', '', {
+                        src: '/videos/gravity-simulator.mkv',
+                    })
+                ], {
+                    alt: 'Gravity simulator video',
+                    className: "post-image",
+                    controls: '',
+                    preload: 'none'
+                }),
+                Component(FIGCAPTION, 'Sample of the Gravity Simulator output')
+            ]),
+
+
+
+            Corrections
+
         ], {
             className: 'post content'
         })
@@ -188,14 +218,17 @@ async function getContent() {
 
 async function render() {
     const content = await getContent();
-    const head = postHead(`
-        <title>Gravity Simulator</title>
+    const head = postHead({
+        title: 'Gravity Simulator',
+        description: 'A java gravity simulator that allows visualisation through processing.',
+        imageUrl: 'https://blog.nikpappas.com/images/social/gravity-simulator.jpg'
+    }, `
 
-        <meta property="og:image" content="https://blog.nikpappas.com/images/gravity-simulator-social.jpg" />
-        <meta property="og:description" content="A java gravity simulator that allows visualisation through processing." />
         <meta property="og:url" content="https://blog.nikpappas.com/post/gravity-simulator.html" />        
-
         <meta name="keywords" content="gravity,particle,processing,physics,programming" />
+        <meta property="og:image:width" content="1080" />
+        <meta property="og:image:height" content="1080" />        
+
         `)
     await pageRender.render("./intermediate/post/gravity-simulator.html", content, head);
 }
