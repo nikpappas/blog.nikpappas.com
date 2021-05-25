@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node node_modules/serve/bin/serve out/",
     "render": "npm run clean && node ./src/renderer.js && npm run sitemap && npm run render:assets",
-    "render:assets": "cp -r images out && cp -r videos out && cp -r fonts out && cp -r audio out",
+    "render:assets": "cp -r images out && cp -r videos out && cp -r fonts out && cp -r audio out && cp manifest.json out",
     "sitemap": "node src/sitemap.js",
     "clean": "touch out/test.js && rm -r out/*",
     "watch": "npm-watch render",

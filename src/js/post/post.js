@@ -24,6 +24,7 @@ function postHead({
     <meta content="${title}" property="twitter:title" />
 
     <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0e3f38" />
     <meta name="description" content="${description}">
     <meta property="og:description" content="${description}" />
     <meta property="twitter:description" content="${description}" />

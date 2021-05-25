@@ -57,7 +57,7 @@ function getContent() {
 async function render() {
     console.log("DIGITAL SYNTH");
     const content = getContent();
-    await pageRender.render("./intermediate/post/digital-java-synthesizer.html", content, postHead({
+    await pageRender.render("./intermediate/post/digital-java-synthesizer", content, postHead({
         title: 'Digital Java Synthesizer',
         description: 'The simplest java wave composition software that also works with your midi controller.',
         imageUrl: 'https://blog.nikpappas.com/images/social/wave-composition.jpg'
@@ -66,7 +66,7 @@ async function render() {
         <meta name="keywords" content="analog, synth, sunthesizer, transistors, capacitors, reverse avalanche" />
         <meta property="og:image:width" content="1080" />
         <meta property="og:image:height" content="1080" />        
-        <meta property="og:url" content="https://blog.nikpappas.com/post/digital-java-synthesizer.html" />        
+        <meta property="og:url" content="https://blog.nikpappas.com/post/digital-java-synthesizer" />        
         <meta name="keywords" content="midi, synthesizer, composition, wave, sine, tri, saw,processing,programming,java" />
     `));
 }

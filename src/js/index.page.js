@@ -26,6 +26,7 @@ function head(title, description, imageUrl) {
 
     <meta property="og:type" content="website" />
     <meta name="keywords" content="blog,processing,Nikolaos, Pappas, visualisation, visualization, music, project, programming" />
+    <meta name="theme-color" content="#0e3f38" />
     <meta name="description" content="${description}">
     <meta property="og:description" content="${description}" />
     <meta property="twitter:description" content="${description}" />
@@ -34,7 +35,8 @@ function head(title, description, imageUrl) {
     <meta property="og:image:width" content="1050" />
     <meta property="og:image:height" content="1050" />
     <meta content="summary_large_image" name="twitter:card" />
-
+    <link rel="apple-touch-icon" href="/images/logo-apple-icon.png">
+    <link rel="manifest" href="/manifest.json">
     `;
 }
 
@@ -46,19 +48,19 @@ function Tabs(active) {
         },
         {
             title: 'Music',
-            href: '/music.html'
+            href: '/music'
         },
         {
             title: 'Electronics',
-            href: '/electronics.html'
+            href: '/electronics'
         },
         {
             title: 'Processing',
-            href: '/processing.html'
+            href: '/processing'
         },
         {
             title: 'Visualisation',
-            href: '/visualisation.html'
+            href: '/visualisation'
         },
 
     ]
@@ -86,10 +88,11 @@ const Header = Component(HEADER, [
     Div([
         Div([
             Img({
-                src: '/images/logo-outer128.png',
+                src: '/images/logo-outer192.png',
                 alt: `Nikolaos Pappas' logo`,
                 style: 'vertical-align:bottom',
                 height: "94",
+                width: "94",
             }),
             Component(H1, 'Nikolaos Pappas', {
                 className: 'index-logo-title'
@@ -127,11 +130,11 @@ function Card(title, url, backgroundUrl, flexClass) {
 }
 
 const cards = [
-    Card("Gravity Simulator", "/post/gravity-simulator.html", "/images/gravity-simulator.jpg", 'flex-1 processing visualisation'),
-    Card("Processing sketches in an IDE", "/post/processing-sketches-in-an-ide.html", "/images/processing-intellij.jpg", 'flex-3 processing'),
-    Card("Analog Synthesizer", "/post/analog-synthesizer.html", "/images/visualisation-thumb.jpg", 'flex-2 music electronics'),
-    Card("Java Synthesizer", "/post/digital-java-synthesizer.html", "/images/DigitalJavaSynth.jpg", 'flex-2 music processing'),
-    Card("Game of Life 3D", "/post/game-of-life-3d.html", "/images/GOL6073.jpg", 'flex-2 not-ready-card processing visualisation'),
+    Card("Gravity Simulator", "/post/gravity-simulator", "/images/gravity-simulator.jpg", 'flex-1 processing visualisation'),
+    Card("Processing sketches in an IDE", "/post/processing-sketches-in-an-ide", "/images/processing-intellij.jpg", 'flex-3 processing'),
+    Card("Analog Synthesizer", "/post/analog-synthesizer", "/images/visualisation-thumb.jpg", 'flex-2 music electronics'),
+    Card("Java Synthesizer", "/post/digital-java-synthesizer", "/images/DigitalJavaSynth.jpg", 'flex-2 music processing'),
+    Card("Game of Life 3D", "/post/game-of-life-3d", "/images/GOL6073.jpg", 'flex-2 not-ready-card processing visualisation'),
     Component(H2, "Me", {
         className: "flex-full heading-main all"
     }),

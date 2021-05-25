@@ -7,7 +7,6 @@ const { Component, Img, createElement } = require("./HtmlUtils");
 const { DIV } = require("./HtmlTags");
 
 
-
 function getContent() {
     return header() + createElement(DIV, [
         Component(DIV, 'Sorry the dog ate the page you were looking for...'),

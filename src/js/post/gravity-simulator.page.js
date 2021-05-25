@@ -3,7 +3,6 @@ const {
     H2,
     SECTION,
     ARTICLE,
-    ANCHOR,
     P,
     CODE,
     FIGURE,
@@ -137,7 +136,7 @@ async function getContent() {
             // Component(ARTICLE, "Tassacassasd doias odihaso dihaos idhaos idhaos idhaos ihdao sihdo iashdo isahdo ashdo  asdi aho "),
             Component(H2, "Processing visualisation"),
             Component(ARTICLE, [
-                Component(P, `As this is getting rather big I will not get into deatails as in to how to run Processing scetches as Standalone java apps I have made <a href="/post/processing-sketches-in-an-ide.html">another post</a> and <a target="blank" href="https://github.com/nikpappas/processing-gradle-bootstrap">a bootstrap github project</a> just for that. But I couldn't not put the code here.`)
+                Component(P, `As this is getting rather big I will not get into deatails as in to how to run Processing scetches as Standalone java apps I have made <a href="/post/processing-sketches-in-an-ide">another post</a> and <a target="blank" href="https://github.com/nikpappas/processing-gradle-bootstrap">a bootstrap github project</a> just for that. But I couldn't not put the code here.`)
             ]),
             Component(CODE, `
             
@@ -192,13 +191,14 @@ async function getContent() {
             Component(FIGURE, [
                 Component(VIDEO, [
                     Component('source', '', {
-                        src: '/videos/gravity-simulator.mkv',
+                        src: '/videos/gravity-simulator.mp4',
                     })
                 ], {
                     alt: 'Gravity simulator video',
                     className: "post-image",
                     controls: '',
-                    preload: 'none'
+                    preload: 'none',
+                    poster: '/videos/poster-gravity-simulator.jpg'
                 }),
                 Component(FIGCAPTION, 'Sample of the Gravity Simulator output')
             ]),
@@ -224,7 +224,7 @@ async function render() {
         imageUrl: 'https://blog.nikpappas.com/images/social/gravity-simulator.jpg'
     }, `
 
-        <meta property="og:url" content="https://blog.nikpappas.com/post/gravity-simulator.html" />        
+        <meta property="og:url" content="https://blog.nikpappas.com/post/gravity-simulator" />        
         <meta name="keywords" content="gravity,particle,processing,physics,programming" />
         <meta property="og:image:width" content="1080" />
         <meta property="og:image:height" content="1080" />        

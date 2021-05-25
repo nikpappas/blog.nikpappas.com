@@ -10,9 +10,10 @@ async function run() {
     const htmls = files.filter(x =>
             x.endsWith(".html")
         )
+        .filter(x => !x.endsWith('notFound.html'))
         .map(x => `
         <url>
-            <loc>https://blog.nikpappas.com/${x.replace('out/', '')}</loc>
+            <loc>https://blog.nikpappas.com/${x.replace('out/', '').replace('index.html','').replace('.html','')}</loc>
             <lastmod>${new Date().toISOString()}</lastmod>
         </url>
     `)

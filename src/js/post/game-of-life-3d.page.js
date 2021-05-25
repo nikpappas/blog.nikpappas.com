@@ -59,7 +59,7 @@ async function render() {
             imageUrl: 'https://blog.nikpappas.com/images/social/game-of-life.jpg'
         },
         `
-            <meta property="og:url" content="https://blog.nikpappas.com/post/gravity-simulator.html" />        
+            <meta property="og:url" content="https://blog.nikpappas.com/post/gravity-simulator" />        
             <meta name="keywords" content="processing,mathematics,programming,games,nogames,game,life" />
             <meta property="og:image:width" content="1050" />
             <meta property="og:image:height" content="1050" />        

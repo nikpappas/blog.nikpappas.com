@@ -1,0 +1,54 @@
+{
+  "short_name": "Weather",
+  "name": "Nikolaos Pappas' Blog",
+  "icons": [
+    {
+      "src": "/images/logo-apple-icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/logo-outer-512-pwa.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?source=pwa",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#0e3f38",
+  "shortcuts": [
+    {
+      "name": "Music",
+      "short_name": "Music",
+      "description": "Music projects",
+      "url": "/music?source=pwa",
+      "icons": [{ "src": "/images/logo-apple-icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Electronics",
+      "short_name": "Electronics",
+      "description": "Electronics projects",
+      "url": "/electronics?source=pwa",
+      "icons": [{ "src": "/images/logo-apple-icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Processing",
+      "short_name": "Processing",
+      "description": "Processing projects",
+      "url": "/processing?source=pwa",
+      "icons": [{ "src": "/images/logo-apple-icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Visualisation",
+      "short_name": "Visualisation",
+      "description": "Visualisation projects",
+      "url": "/visualisation?source=pwa",
+      "icons": [{ "src": "/images/logo-apple-icon.png", "sizes": "192x192" }]
+    }
+  ],
+  "description": "A blog with a variety of topics from electronics to visualisation. It's a gallery of personal projects aiming to inspire.",
+  "screenshots": [
+  ]
+}

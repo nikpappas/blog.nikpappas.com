@@ -132,14 +132,13 @@ async function render() {
         description: 'Flapping around trying to make sounds from transistors. The simplest oscilator ever.',
         imageUrl: 'https://blog.nikpappas.com/images/social/analog-synthesizer.jpg'
     },`
-    <meta property="og:url" content="https://blog.nikpappas.com/post/analog-synthesizer.html" />
+    <meta property="og:url" content="https://blog.nikpappas.com/post/analog-synthesizer" />
     <meta name="keywords" content="analog, synth, sunthesizer, transistors, capacitors, reverse avalanche" />
     <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="600" />        
 
     `));
 }
-
 
 module.exports = {
     render: render

@@ -2,68 +2,62 @@
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
         
         <url>
-            <loc>https://blog.nikpappas.com/visualisation.html</loc>
-            <lastmod>2021-05-24T07:09:36.989Z</lastmod>
+            <loc>https://blog.nikpappas.com/visualisation</loc>
+            <lastmod>2021-05-25T06:37:41.165Z</lastmod>
         </url>
     
 
         <url>
-            <loc>https://blog.nikpappas.com/index.html</loc>
-            <lastmod>2021-05-24T07:09:36.989Z</lastmod>
+            <loc>https://blog.nikpappas.com/</loc>
+            <lastmod>2021-05-25T06:37:41.165Z</lastmod>
         </url>
     
 
         <url>
-            <loc>https://blog.nikpappas.com/post/game-of-life-3d.html</loc>
-            <lastmod>2021-05-24T07:09:36.989Z</lastmod>
+            <loc>https://blog.nikpappas.com/post/game-of-life-3d</loc>
+            <lastmod>2021-05-25T06:37:41.165Z</lastmod>
         </url>
     
 
         <url>
-            <loc>https://blog.nikpappas.com/post/processing-sketches-in-an-ide.html</loc>
-            <lastmod>2021-05-24T07:09:36.989Z</lastmod>
+            <loc>https://blog.nikpappas.com/post/processing-sketches-in-an-ide</loc>
+            <lastmod>2021-05-25T06:37:41.165Z</lastmod>
         </url>
     
 
         <url>
-            <loc>https://blog.nikpappas.com/post/digital-java-synthesizer.html</loc>
-            <lastmod>2021-05-24T07:09:36.989Z</lastmod>
+            <loc>https://blog.nikpappas.com/post/digital-java-synthesizer</loc>
+            <lastmod>2021-05-25T06:37:41.165Z</lastmod>
         </url>
     
 
         <url>
-            <loc>https://blog.nikpappas.com/post/analog-synthesizer.html</loc>
-            <lastmod>2021-05-24T07:09:36.989Z</lastmod>
+            <loc>https://blog.nikpappas.com/post/analog-synthesizer</loc>
+            <lastmod>2021-05-25T06:37:41.165Z</lastmod>
         </url>
     
 
         <url>
-            <loc>https://blog.nikpappas.com/post/gravity-simulator.html</loc>
-            <lastmod>2021-05-24T07:09:36.989Z</lastmod>
+            <loc>https://blog.nikpappas.com/post/gravity-simulator</loc>
+            <lastmod>2021-05-25T06:37:41.165Z</lastmod>
         </url>
     
 
         <url>
-            <loc>https://blog.nikpappas.com/electronics.html</loc>
-            <lastmod>2021-05-24T07:09:36.989Z</lastmod>
+            <loc>https://blog.nikpappas.com/electronics</loc>
+            <lastmod>2021-05-25T06:37:41.165Z</lastmod>
         </url>
     
 
         <url>
-            <loc>https://blog.nikpappas.com/notFound.html</loc>
-            <lastmod>2021-05-24T07:09:36.989Z</lastmod>
+            <loc>https://blog.nikpappas.com/processing</loc>
+            <lastmod>2021-05-25T06:37:41.165Z</lastmod>
         </url>
     
 
         <url>
-            <loc>https://blog.nikpappas.com/processing.html</loc>
-            <lastmod>2021-05-24T07:09:36.989Z</lastmod>
-        </url>
-    
-
-        <url>
-            <loc>https://blog.nikpappas.com/music.html</loc>
-            <lastmod>2021-05-24T07:09:36.989Z</lastmod>
+            <loc>https://blog.nikpappas.com/music</loc>
+            <lastmod>2021-05-25T06:37:41.165Z</lastmod>
         </url>
     
         </urlset>
