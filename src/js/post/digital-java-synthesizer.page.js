@@ -60,7 +60,9 @@ async function render() {
     await pageRender.render("./intermediate/post/digital-java-synthesizer", content, postHead({
         title: 'Digital Java Synthesizer',
         description: 'The simplest java wave composition software that also works with your midi controller.',
-        imageUrl: 'https://blog.nikpappas.com/images/social/wave-composition.jpg'
+        imageUrl: 'https://blog.nikpappas.com/images/social/wave-composition.jpg',
+        canonical: "https://blog.nikpappas.com/post/digital-java-synthesizer",
+
     }, `
 
         <meta name="keywords" content="analog, synth, sunthesizer, transistors, capacitors, reverse avalanche" />

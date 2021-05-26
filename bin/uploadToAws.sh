@@ -14,9 +14,9 @@ for d in ${DIST}/*.html ; do
 done
 
 
-# gzip -9 -c ./out/sitemap.xml | aws s3 cp - s3://blog.nikpappas.com/sitemap.xml --acl "public-read" --content-encoding "gzip" --content-type "text/xml" --profile "papakos_1"
-# gzip -9 -c ./out/robots.txt | aws s3 cp - s3://blog.nikpappas.com/robots.txt --acl "public-read" --content-encoding "gzip" --content-type "text/plain" --profile "papakos_1"
-gzip -9 -c ./out/manifest.json | aws s3 cp - s3://blog.nikpappas.com/manifest.json --acl "public-read" --content-encoding "gzip" --content-type "application/json" --profile "papakos_1"
+gzip -9 -c ./out/sitemap.xml | aws s3 cp - s3://blog.nikpappas.com/sitemap.xml --acl "public-read" --content-encoding "gzip" --content-type "text/xml" --profile "papakos_1"
+gzip -9 -c ./out/robots.txt | aws s3 cp - s3://blog.nikpappas.com/robots.txt --acl "public-read" --content-encoding "gzip" --content-type "text/plain" --profile "papakos_1"
+# gzip -9 -c ./out/manifest.json | aws s3 cp - s3://blog.nikpappas.com/manifest.json --acl "public-read" --content-encoding "gzip" --content-type "application/json" --profile "papakos_1"
 
 
 for d in ${DIST}/*.css ; do
@@ -42,15 +42,15 @@ done
 # done
 
 
-for d in ${DIST}/images/*.png ; do
-    echo "$d"
-    if [[ "$d" == *"originals"* ]]; then
-        echo "Ignoring $d."
-    else
-        echo `basename $d`
-        gzip -9 -c ${d} | aws s3 cp - s3://blog.nikpappas.com/images/`basename $d` --acl "public-read" --content-encoding "gzip" --content-type "image/png" --profile "papakos_1"
-    fi
-done
+# for d in ${DIST}/images/*.png ; do
+#     echo "$d"
+#     if [[ "$d" == *"originals"* ]]; then
+#         echo "Ignoring $d."
+#     else
+#         echo `basename $d`
+#         gzip -9 -c ${d} | aws s3 cp - s3://blog.nikpappas.com/images/`basename $d` --acl "public-read" --content-encoding "gzip" --content-type "image/png" --profile "papakos_1"
+#     fi
+# done
 
 # for d in ${DIST}/images/*.svg ; do
 #     echo "$d"

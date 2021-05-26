@@ -22,7 +22,8 @@ function render() {
 
     pageRender.render("./intermediate/music.html", content, head("Music | Nikolaos Pappas' Blog",
         "The music section of a blog with a variety of topics from electronics to visualisation. It's a gallery of personal projects aiming to inspire.",
-        "https://blog.nikpappas.com/images/social/game-of-life.jpg"
+        "https://blog.nikpappas.com/images/social/game-of-life.jpg",
+        "https://blog.nikpappas.com/music",
     ));
 }
 

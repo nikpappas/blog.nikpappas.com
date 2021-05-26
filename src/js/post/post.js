@@ -16,7 +16,8 @@ const {
 function postHead({
     title,
     description,
-    imageUrl
+    imageUrl,
+    canonical,
 }, extra) {
     const base = `
     <title>${title}</title>
@@ -33,8 +34,10 @@ function postHead({
     <meta content="summary_large_image" name="twitter:card" />
 
     <meta property="og:type" content="article" />
-    <link rel="preload" href="/post.css" as="style">
-    <link rel="stylesheet" href="/post.css">
+    <link rel="preload" href="/post.css?v=1" as="style">
+    <link rel="stylesheet" href="/post.css?v=1">
+    <link rel="canonical" href="${canonical}" />
+
     `;
     if (extra) {
         return extra + base;

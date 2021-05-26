@@ -221,10 +221,12 @@ async function render() {
     const head = postHead({
         title: 'Gravity Simulator',
         description: 'A java gravity simulator that allows visualisation through processing.',
-        imageUrl: 'https://blog.nikpappas.com/images/social/gravity-simulator.jpg'
+        imageUrl: 'https://blog.nikpappas.com/images/social/gravity-simulator.jpg',
+        canonical: "https://blog.nikpappas.com/post/gravity-simulator",
+
     }, `
 
-        <meta property="og:url" content="https://blog.nikpappas.com/post/gravity-simulator" />        
+        <meta property="og:url" content="https://blog.nikpappas.com/post/gravity-simulator" /> 
         <meta name="keywords" content="gravity,particle,processing,physics,programming" />
         <meta property="og:image:width" content="1080" />
         <meta property="og:image:height" content="1080" />        

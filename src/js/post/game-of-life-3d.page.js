@@ -56,10 +56,11 @@ async function render() {
     const head = postHead({
             title: 'Game of Life 3D',
             description: 'A 3D take on the classic Game of Life',
-            imageUrl: 'https://blog.nikpappas.com/images/social/game-of-life.jpg'
+            imageUrl: 'https://blog.nikpappas.com/images/social/game-of-life.jpg',
+            canonical: "https://blog.nikpappas.com/post/game-of-life-3d",
         },
         `
-            <meta property="og:url" content="https://blog.nikpappas.com/post/gravity-simulator" />        
+            <meta property="og:url" content="https://blog.nikpappas.com/post/game-of-life-3d" />        
             <meta name="keywords" content="processing,mathematics,programming,games,nogames,game,life" />
             <meta property="og:image:width" content="1050" />
             <meta property="og:image:height" content="1050" />        

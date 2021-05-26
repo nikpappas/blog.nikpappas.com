@@ -49,9 +49,10 @@ async function render() {
     await pageRender.render("./intermediate/post/processing-sketches-in-an-ide.html", content, postHead({
         title: 'Processing sketches in an IDE',
         description: 'A java (gradle) bootstrap project to allow developers to harness the power of both processing and that of an IDE.',
-        imageUrl: 'https://blog.nikpappas.com/images/social/processing-intellij.jpg'
+        imageUrl: 'https://blog.nikpappas.com/images/social/processing-intellij.jpg',
+        canonical: "https://blog.nikpappas.com/post/processing-sketches-in-an-ide",
     }, `
-    <meta property="og:url" content="https://blog.nikpappas.com/post/processing-sketches-in-an-ide.html" />        
+    <meta property="og:url" content="https://blog.nikpappas.com/post/processing-sketches-in-an-ide" />        
     <meta name="keywords" content="processing,programming,iintellij" />
     <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="600" />

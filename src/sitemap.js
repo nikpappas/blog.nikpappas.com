@@ -31,7 +31,12 @@ async function write() {
 
 
     fs.writeFileSync("out/sitemap.xml", sitemap);
-    const robots = 'Sitemap: https://blog.nikpappas.com/sitemap.xml';
+    const robots = `
+    Sitemap: https://blog.nikpappas.com/sitemap.xml
+    
+    User-agent: * 
+    Disallow: https://blog.nikpappas.com/notFound*
+    `;
     fs.writeFileSync("out/robots.txt", robots);
 
 }

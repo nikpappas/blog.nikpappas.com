@@ -18,7 +18,7 @@ const {
 } = require('./HtmlUtils');
 const pageRender = require('./pageRender');
 
-function head(title, description, imageUrl) {
+function head(title, description, imageUrl, canonical) {
     return `
     <title>${title}</title>
     <meta content="${title}" property="og:title" />
@@ -37,7 +37,8 @@ function head(title, description, imageUrl) {
     <meta content="summary_large_image" name="twitter:card" />
     <link rel="apple-touch-icon" href="/images/logo-apple-icon.png">
     <link rel="manifest" href="/manifest.json">
-    `;
+    <link rel="canonical" href="${canonical}" />
+        `;
 }
 
 function Tabs(active) {
@@ -181,7 +182,8 @@ function render() {
     pageRender.render("intermediate/index.html", out, head(
         "Nikolaos Pappas' Blog",
         "A blog with a variety of topics from electronics to visualisation. It's a gallery of personal projects aiming to inspire.",
-        "https://blog.nikpappas.com/images/social/game-of-life.jpg"
+        "https://blog.nikpappas.com/images/social/game-of-life.jpg",
+        "https://blog.nikpappas.com/",
     ))
 
 }
