@@ -131,6 +131,7 @@ function Card(title, url, backgroundUrl, flexClass) {
 }
 
 const cards = [
+    Card("Mandelbrot Renderer", "/post/mandelbrot-renderer", "/images/mandelbrot-renderer.jpg", 'flex-1 processing visualisation'),
     Card("Gravity Simulator", "/post/gravity-simulator", "/images/gravity-simulator.jpg", 'flex-1 processing visualisation'),
     Card("Processing sketches in an IDE", "/post/processing-sketches-in-an-ide", "/images/processing-intellij.jpg", 'flex-3 processing'),
     Card("Analog Synthesizer", "/post/analog-synthesizer", "/images/visualisation-thumb.jpg", 'flex-2 music electronics'),
