@@ -1,12 +1,11 @@
 const fs = require('fs');
-const path = require("path");
 
-const renderer = require("./renderer");
+const { walk } = require('./renderUtils');
 
 
 
 async function run() {
-    const files = await renderer.walk("out", []);
+    const files = await walk("out", []);
     const htmls = files.filter(x =>
             x.endsWith(".html")
         )

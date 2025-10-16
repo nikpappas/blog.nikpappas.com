@@ -2,7 +2,7 @@ const fs = require('fs');
 const {
     createDirIfNotExists,
     getParentDir
-} = require('../renderer');
+} = require('../renderUtils');
 
 function render(outFile, body, head) {
     const template = fs.readFileSync('src/client/index.html', 'utf8');

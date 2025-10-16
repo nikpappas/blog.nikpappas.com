@@ -1,7 +1,7 @@
 const fs = require('fs');
-const path = require("path");
 const mini = require('html-minifier');
 const cssMini = require('css-minify');
+const { walk, getParentDir, createDirIfNotExists } = require('./renderUtils');
 
 const mini_opts = {
     // // Treat attributes in case sensitive manner (useful for custom HTML tags)
@@ -207,37 +207,4 @@ function minify(file, func, fileOut) {
     createDirIfNotExists(parentDir);
     fs.writeFileSync(fileOut, outCode);
     console.log("++++++++++++++++++++++++++++++++++++++++++++");
-}
-
-async function walk(dir, files = []) {
-    for await (const d of await fs.promises.opendir(dir)) {
-        const entry = path.join(dir, d.name);
-        console.log(entry);
-        if (d.isFile()) files.push(entry);
-        else if (d.isDirectory()) {
-            files = await walk(entry, files);
-        }
-    }
-    return files
-}
-
-function getParentDir(file) {
-    return file.split("/").slice(0, -1).join("/");
-
-}
-
-function createDirIfNotExists(dir) {
-    if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, {
-            recursive: true
-        })
-    }
-}
-
-
-
-module.exports = {
-    createDirIfNotExists,
-    getParentDir,
-    walk,
 }
