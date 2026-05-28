@@ -1,0 +1,24 @@
+---
+import Base from "@/layouts/Base.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+---
+
+<Base
+    title="404 - Not Found"
+    description="The page you are looking for cannot be found."
+>
+    <Header />
+    <header
+        class="reveal reveal-d1 place-items-center text-center wide:mt-16 grid gap-8 wide:gap-14"
+    >
+        <h1 class="display text-[clamp(3rem,11vw,9rem)]">
+            404<span class="text-[var(--color-amber)]">.</span>
+        </h1>
+        <div>
+            <p class="text-center">Sorry! Can't find it.</p>
+            <a href="/">Go back</a>
+        </div>
+    </header>
+    <Footer />
+</Base>

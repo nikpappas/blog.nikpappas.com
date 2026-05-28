@@ -2,22 +2,22 @@ source ~/dev/python/webPython3Env/bin/activate
 DIST="dist"
 
 
-for d in ${DIST}/post/**/index.html ; do
-    # Get the parent folder name (e.g. "my-post" from "post/my-post/index.html")
-    post_name=$(basename $(dirname "$d"))
-    echo "Uploading $d → s3://blog.nikpappas.com/post/${post_name}"
-    gzip -9 -c "${d}" | aws s3 cp - "s3://blog.nikpappas.com/post/${post_name}" \
-        --acl "public-read" \
-        --content-encoding "gzip" \
-        --content-type "text/html" \
-        --profile "papakos_1"
-done
-
-# for d in ${DIST}/*.html ; do
-#     echo "$d"
-#     echo `basename $d`
-#     gzip -9 -c ${d} | aws s3 cp - s3://blog.nikpappas.com/`basename "${d%.html}"` --acl "public-read" --content-encoding "gzip" --content-type "text/html" --profile "papakos_1"
+# for d in ${DIST}/post/**/index.html ; do
+#     # Get the parent folder name (e.g. "my-post" from "post/my-post/index.html")
+#     post_name=$(basename $(dirname "$d"))
+#     echo "Uploading $d → s3://blog.nikpappas.com/post/${post_name}"
+#     gzip -9 -c "${d}" | aws s3 cp - "s3://blog.nikpappas.com/post/${post_name}" \
+#         --acl "public-read" \
+#         --content-encoding "gzip" \
+#         --content-type "text/html" \
+#         --profile "papakos_1"
 # done
+
+for d in ${DIST}/*.html ; do
+    echo "$d"
+    echo `basename $d`
+    gzip -9 -c ${d} | aws s3 cp - s3://blog.nikpappas.com/`basename "${d%.html}"` --acl "public-read" --content-encoding "gzip" --content-type "text/html" --profile "papakos_1"
+done
 
 # gzip -9 -c ${DIST}/sitemap-index.xml | aws s3 cp - s3://blog.nikpappas.com/sitemap.xml --acl "public-read" --content-encoding "gzip" --content-type "text/xml" --profile "papakos_1"
 # gzip -9 -c ${DIST}/sitemap-0.xml | aws s3 cp - s3://blog.nikpappas.com/sitemap-0.xml --acl "public-read" --content-encoding "gzip" --content-type "text/xml" --profile "papakos_1"
