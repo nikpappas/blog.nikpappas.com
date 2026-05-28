@@ -1,0 +1,50 @@
+---
+import Base from "@/layouts/Base.astro";
+import Header from "@/components/Header.astro";
+import Hero from "@/components/Hero.astro";
+import CategoryStrip from "@/components/CategoryStrip.astro";
+import PostCard from "@/components/PostCard.astro";
+import Footer from "@/components/Footer.astro";
+import { posts } from "@/data/posts";
+const total = posts.length;
+---
+
+<Base>
+  <Header active="all" />
+  <Hero />
+  <CategoryStrip />
+
+  <main class="mx-auto w-full max-w-6xl px-5 wide:px-10">
+    <header class="reveal reveal-d3 flex items-end justify-between gap-4 pb-6 border-b border-[var(--color-rule)] mb-2">
+      <div>
+        <span class="eyebrow">§ 02</span>
+        <h2 class="display text-[clamp(2rem,5vw,4rem)] leading-none mt-2">The log<span class="text-[var(--color-amber)]">.</span></h2>
+      </div>
+      <span class="mono text-[0.65rem] tracking-[0.24em] uppercase text-[var(--color-paper-dim)]">
+        {String(total).padStart(2, "0")} entries — chronological
+      </span>
+    </header>
+
+    <div id="postlist" class="reveal reveal-d4">
+      {posts.map((p, i) => <PostCard post={p} index={i} total={total} />)}
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    // ?cat=foo client-side filter on entry rows.
+    const params = new URLSearchParams(window.location.search);
+    const cat = (params.get("cat") || "all").toLowerCase();
+    if (cat !== "all") {
+      document.querySelectorAll<HTMLElement>("#postlist article").forEach((el) => {
+        const cats = (el.dataset.categories || "").split(" ");
+        if (!cats.includes(cat)) el.style.display = "none";
+      });
+    }
+    document.querySelectorAll<HTMLAnchorElement>("a[data-filter]").forEach((a) => {
+      if (a.dataset.filter === cat) a.classList.add("is-active");
+      else a.classList.remove("is-active");
+    });
+  </script>
+</Base>

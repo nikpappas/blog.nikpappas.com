@@ -1,6 +1,0 @@
-
-    Sitemap: https://blog.nikpappas.com/sitemap.xml
-    
-    User-agent: * 
-    Disallow: https://blog.nikpappas.com/notFound*
-    

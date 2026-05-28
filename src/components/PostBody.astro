@@ -1,0 +1,106 @@
+---
+import type { Block } from "@/data/posts";
+import { codeToHtml } from "shiki";
+import codeTheme from "@/styles/code-theme.json";
+
+interface Props {
+  body: Block[];
+}
+const { body } = Astro.props;
+
+const SHIKI_LANGS = new Set([
+  "java",
+  "bash",
+  "shell",
+  "sh",
+  "ts",
+  "tsx",
+  "js",
+  "jsx",
+  "json",
+  "py",
+  "python",
+  "cpp",
+  "c",
+  "rust",
+  "go",
+  "html",
+  "css",
+  "yaml",
+  "toml",
+  "sql",
+]);
+
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+// Pre-render every code block at build time. Indices match `body` for cheap lookup.
+const highlighted: (string | null)[] = await Promise.all(
+  body.map(async (b) => {
+    if (b.kind !== "code") return null;
+    const lang = SHIKI_LANGS.has(b.lang) ? b.lang : "txt";
+    try {
+      return await codeToHtml(b.source, { lang, theme: codeTheme as never });
+    } catch {
+      return `<pre><code>${escapeHtml(b.source)}</code></pre>`;
+    }
+  })
+);
+
+let pIndex = 0;
+---
+
+<div class="prose-block max-w-[68ch]">
+  {body.map((b, i) => {
+    if (b.kind === "h2") return <h2>{b.text}</h2>;
+    if (b.kind === "h3") return <h3>▸ {b.text}</h3>;
+    if (b.kind === "p") {
+      const first = pIndex === 0;
+      pIndex++;
+      return <p class={first ? "dropcap text-[1.08rem]" : ""} set:html={b.html} />;
+    }
+    if (b.kind === "image") {
+      const isVideo = /\.(mp4|webm|mov)(\?.*)?$/i.test(b.src);
+      return (
+        <figure>
+          <div class="bracket-corner shadow-stamp">
+            {isVideo ? (
+              <video
+                src={b.src}
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label={b.alt}
+                class="block w-full"
+              />
+            ) : (
+              <img
+                src={b.src}
+                alt={b.alt}
+                loading="lazy"
+                class="block w-full"
+              />
+            )}
+          </div>
+          {b.caption && <figcaption>{b.caption}</figcaption>}
+        </figure>
+      );
+    }
+    if (b.kind === "code") {
+      const inner = highlighted[i] ?? `<pre><code>${escapeHtml(b.source)}</code></pre>`;
+      return (
+        <div class="codeblock" data-lang={b.lang} set:html={inner} />
+      );
+    }
+    if (b.kind === "link")
+      return <p><a class="linked" href={b.href}>↗ {b.label}</a></p>;
+    return null;
+  })}
+</div>

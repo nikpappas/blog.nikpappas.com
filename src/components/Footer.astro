@@ -1,0 +1,36 @@
+---
+import { site } from "@/data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-28 wide:mt-40 relative">
+  <div class="mx-auto w-full max-w-6xl px-5 wide:px-10">
+    <div class="relative py-12 wide:py-20 border-t border-[var(--color-rule)]">
+      <div class="flex flex-wrap items-end justify-between gap-8">
+        <div>
+          <span class="mono text-[0.7rem] tracking-[0.28em] uppercase text-[var(--color-amber)]">▮ End of log</span>
+          <p class="display text-[clamp(3rem,9vw,7rem)] leading-[0.88] mt-2">
+            Drop a<br />signal<span class="text-[var(--color-amber)]">.</span>
+          </p>
+        </div>
+        <div class="mono text-[0.72rem] tracking-[0.18em] uppercase text-[var(--color-paper-dim)] text-right">
+          <p>
+            Frequency · <a href={`mailto:${site.email}`} class="linked text-[var(--color-amber)]">{site.email}</a>
+          </p>
+          <p class="mt-2">For corrections, send a postcard.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-4 py-6 border-t border-[var(--color-rule)]">
+      <p class="mono text-[0.65rem] tracking-[0.22em] uppercase text-[var(--color-paper-faint)]">
+        {year} ◇ {site.name} ◇ Operations Log
+      </p>
+      <ul class="flex gap-2 flex-wrap">
+        <li><a class="stamp no-line" href={site.cv}>CV</a></li>
+        <li><a class="stamp no-line" href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a class="stamp no-line" href={site.github} target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>

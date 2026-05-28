@@ -2,26 +2,25 @@
   "name": "blog.nikpappas.com",
   "version": "1.0.0",
   "description": "My blog",
-  "main": "src/js/index.js",
+  "type": "module",
+  "private": true,
   "scripts": {
-    "start": "node node_modules/serve/bin/serve out/",
-    "render": "npm run clean && node ./src/renderer.js && npm run sitemap && npm run render:assets",
+    "dev": "astro dev --port 4322",
+    "start": "astro dev --port 4322",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
     "render:assets": "cp -r images out && cp -r videos out && cp -r fonts out && cp -r audio out && cp manifest.json out",
     "sitemap": "node src/sitemap.js",
-    "clean": "touch out/test.js && rm -r out/*",
-    "watch": "npm-watch render",
-    "start:prod": "npm run watch & npm start",
     "upload": "./bin/uploadToAws.sh",
     "test": "jest",
     "optimise-svg": "node ./src/svgOptimiser.js"
   },
-  "watch": {
-    "render": {
-      "patterns": [
-        "src/**/*"
-      ],
-      "extensions": "js,html,css"
-    }
+  "dependencies": {
+    "astro": "^6.3.8",
+    "@tailwindcss/vite": "^4.0.0",
+    "shiki": "^1.0.0",
+    "tailwindcss": "^4.0.0"
   },
   "repository": {
     "type": "git",
@@ -32,15 +31,6 @@
   ],
   "author": "Nikolaos Pappas",
   "license": "ISC",
-  "devDependencies": {
-    "css-minify": "^1.0.1",
-    "html-minifier": "^4.0.0",
-    "jest": "^26.6.3",
-    "mathjax-node": "^2.1.1",
-    "npm-watch": "^0.9.0",
-    "serve": "^13.0.2",
-    "svgo": "^2.3.0"
-  },
   "bugs": {
     "url": "https://github.com/nikpappas/blog.nikpappas.com/issues"
   },

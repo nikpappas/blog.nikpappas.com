@@ -1,0 +1,140 @@
+---
+import Base from "@/layouts/Base.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import PostBody from "@/components/PostBody.astro";
+import { posts } from "@/data/posts";
+import { site } from "@/data/site";
+
+export function getStaticPaths() {
+  return posts.map((p) => ({ params: { slug: p.slug }, props: { post: p } }));
+}
+
+const { post } = Astro.props;
+const idx = posts.findIndex((p) => p.slug === post.slug);
+const n = String(idx + 1).padStart(2, "0");
+const total = String(posts.length).padStart(2, "0");
+const prev = posts[idx - 1];
+const next = posts[idx + 1];
+const isVideoCover = /\.(mp4|webm|mov)(\?.*)?$/i.test(post.cover);
+---
+
+<Base title={post.title} description={post.excerpt}>
+  <Header />
+
+  <article class="relative mx-auto w-full max-w-6xl px-5 wide:px-10 pt-12 wide:pt-20">
+
+    <!-- Top dossier band -->
+    <div class="reveal flex flex-wrap items-end justify-between gap-4 pb-4 border-b border-[var(--color-rule)]">
+      <a href="/" class="no-line mono text-[0.7rem] tracking-[0.22em] uppercase text-[var(--color-paper-dim)] hover:text-[var(--color-amber)] transition-colors">
+        ← back to the log
+      </a>
+      <span class="mono text-[0.7rem] tracking-[0.22em] uppercase text-[var(--color-paper-faint)]">
+        Entry № {n} / {total}
+      </span>
+    </div>
+
+    <!-- Big stacked title -->
+    <header class="reveal reveal-d1 mt-10 wide:mt-14 grid wide:grid-cols-[1fr_240px] gap-8 wide:gap-14 items-end">
+      <div>
+        <div class="flex flex-wrap items-center gap-2 mb-6">
+          {post.categories.map((c) => <span class="stamp">{c}</span>)}
+          {post.status === "wip" && <span class="stamp">Draft</span>}
+        </div>
+        <h1 class="display text-[clamp(3rem,11vw,9rem)] leading-[0.86]">
+          {post.title}<span class="text-[var(--color-amber)]">.</span>
+        </h1>
+      </div>
+      <aside class="border-l border-[var(--color-amber)] pl-5 wide:pl-6 mono text-[0.7rem] tracking-[0.18em] uppercase text-[var(--color-paper-dim)] leading-relaxed">
+        <p class="text-[var(--color-amber)] mb-3">▮ Brief</p>
+        <p class="normal-case tracking-normal font-normal text-[0.95rem] leading-relaxed body-serif text-[var(--color-paper)]">
+          {post.excerpt}
+        </p>
+        {post.repo && (
+          <p class="mt-5">
+            <a href={post.repo} target="_blank" rel="noopener" class="linked text-[var(--color-amber)]">
+              ↗ source on github
+            </a>
+          </p>
+        )}
+      </aside>
+    </header>
+
+    <!-- Specimen plate (cover) -->
+    {post.cover && (
+      <figure class="reveal reveal-d2 mt-14 wide:mt-20 bracket-corner shadow-stamp overflow-hidden">
+        {isVideoCover ? (
+          <video
+            src={post.cover}
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label={post.title}
+            class="block w-full"
+          />
+        ) : (
+          <img src={post.cover} alt={post.title} class="block w-full" />
+        )}
+      </figure>
+    )}
+
+    <!-- Metadata strip -->
+    <div class="reveal reveal-d3 mt-12 wide:mt-16 grid grid-cols-2 wide:grid-cols-4 gap-6 border-t border-b border-[var(--color-rule)] py-5">
+      {[
+        { label: "Filed under", value: post.categories.join(" · ") },
+        { label: "Status", value: post.status === "wip" ? "Draft" : "Logged" },
+        { label: "Index", value: `№ ${n} / ${total}` },
+        { label: "Author", value: site.name },
+      ].map((m) => (
+        <div>
+          <span class="mono block text-[0.6rem] tracking-[0.28em] uppercase text-[var(--color-paper-faint)]">{m.label}</span>
+          <span class="mono block mt-1.5 text-[0.85rem] tracking-[0.06em] text-[var(--color-paper)]">{m.value}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Body -->
+    <section class="reveal reveal-d4 mt-14 wide:mt-20 grid wide:grid-cols-[120px_1fr] gap-6 wide:gap-10">
+      <aside class="hidden wide:block">
+        <div class="sticky top-32 mono text-[0.65rem] tracking-[0.24em] uppercase text-[var(--color-paper-faint)]">
+          <p class="text-[var(--color-amber)]">▮</p>
+          <p class="mt-2">Section</p>
+          <p class="display-tight text-[3.5rem] leading-none text-[var(--color-paper)]">{n}</p>
+          <p class="mt-2">{post.title}</p>
+        </div>
+      </aside>
+      <PostBody body={post.body} />
+    </section>
+
+    <hr class="rule-dotted mt-16" />
+
+    <!-- Previous / next -->
+    <nav class="grid grid-cols-1 sm:grid-cols-2 gap-6 wide:gap-10">
+      {prev ? (
+        <a href={`/post/${prev.slug}`} class="no-line group block border border-[var(--color-rule)] p-5 wide:p-6 hover:border-[var(--color-amber)] transition-colors">
+          <span class="mono text-[0.62rem] tracking-[0.28em] uppercase text-[var(--color-paper-faint)] group-hover:text-[var(--color-amber)] transition-colors">
+            ← Previous entry
+          </span>
+          <p class="display text-3xl wide:text-4xl mt-2 leading-[0.95]">
+            {prev.title}<span class="text-[var(--color-amber)]">.</span>
+          </p>
+        </a>
+      ) : <span></span>}
+      {next ? (
+        <a href={`/post/${next.slug}`} class="no-line group block border border-[var(--color-rule)] p-5 wide:p-6 hover:border-[var(--color-amber)] transition-colors text-right">
+          <span class="mono text-[0.62rem] tracking-[0.28em] uppercase text-[var(--color-paper-faint)] group-hover:text-[var(--color-amber)] transition-colors">
+            Next entry →
+          </span>
+          <p class="display text-3xl wide:text-4xl mt-2 leading-[0.95]">
+            {next.title}<span class="text-[var(--color-amber)]">.</span>
+          </p>
+        </a>
+      ) : <span></span>}
+    </nav>
+
+  </article>
+
+  <Footer />
+</Base>

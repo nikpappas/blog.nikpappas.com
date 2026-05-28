@@ -1,0 +1,31 @@
+---
+import { categories } from "@/data/posts";
+---
+
+<aside
+  aria-label="Filed categories"
+  class="my-10 wide:my-16 border-y border-[var(--color-rule)]"
+>
+  <div class="mx-auto w-full max-w-6xl px-5 wide:px-10 py-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+    <span class="mono shrink-0 text-[0.65rem] tracking-[0.28em] uppercase text-[var(--color-amber)]">
+      ▮ Filed under
+    </span>
+
+    <span aria-hidden="true" class="hidden sm:block flex-1 h-px bg-[repeating-linear-gradient(90deg,var(--color-rule)_0_6px,transparent_6px_12px)]"></span>
+
+    <ul class="flex flex-wrap items-center gap-x-3 gap-y-1.5 mono text-[0.7rem] tracking-[0.22em] uppercase text-[var(--color-paper)]">
+      {categories.map((c, i) => (
+        <li class="flex items-center gap-3">
+          {i > 0 && <span aria-hidden="true" class="text-[var(--color-amber)]">◆</span>}
+          <span>{c}</span>
+        </li>
+      ))}
+    </ul>
+
+    <span aria-hidden="true" class="hidden sm:block flex-1 h-px bg-[repeating-linear-gradient(90deg,var(--color-rule)_0_6px,transparent_6px_12px)]"></span>
+
+    <span class="mono shrink-0 text-[0.62rem] tracking-[0.22em] uppercase text-[var(--color-paper-faint)]">
+      Classified · open
+    </span>
+  </div>
+</aside>

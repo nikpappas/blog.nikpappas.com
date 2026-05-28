@@ -1,0 +1,104 @@
+---
+import type { Post } from "@/data/posts";
+
+interface Props {
+  post: Post;
+  index: number;
+  total: number;
+}
+const { post, index, total } = Astro.props;
+const n = String(index + 1).padStart(2, "0");
+const totalStr = String(total).padStart(2, "0");
+const cats = post.categories.map((c) => c.toLowerCase()).join(" ");
+const wide = index % 3 === 0; // first / every 3rd entry gets a larger image
+const isVideoCover = /\.(mp4|webm|mov)(\?.*)?$/i.test(post.cover);
+---
+
+<article
+  id={`entry-${post.slug}`}
+  data-categories={cats}
+  class="group relative grid grid-cols-[40px_1fr] wide:grid-cols-[150px_1fr] gap-x-4 wide:gap-x-10 py-12 wide:py-16 border-t border-[var(--color-rule)] first:border-t-0"
+>
+  <!-- Left rail: massive number -->
+  <div class="relative pt-1 wide:pt-2">
+    <span class="display-tight block text-[var(--color-amber)] text-[2.5rem] wide:text-[6rem] leading-[0.85]">
+      {n}
+    </span>
+    <span class="mono hidden wide:block mt-3 text-[0.62rem] tracking-[0.28em] uppercase text-[var(--color-paper-faint)]">
+      / {totalStr}
+    </span>
+  </div>
+
+  <!-- Right column: the entry -->
+  <div class="min-w-0">
+    <!-- Metadata band -->
+    <div class="flex flex-wrap items-center gap-2 mb-4 wide:mb-6">
+      {post.categories.map((c) => <span class="stamp">{c}</span>)}
+      {post.status === "wip" && <span class="stamp">DRAFT</span>}
+      <span class="mono ml-auto text-[0.62rem] tracking-[0.22em] uppercase text-[var(--color-paper-faint)]">
+        entry № {n}
+      </span>
+    </div>
+
+    <!-- Title -->
+    <a href={`/post/${post.slug}`} class="no-line block group/title">
+      <h2 class="display text-[clamp(2.4rem,7vw,5.5rem)] leading-[0.88] text-[var(--color-paper)] transition-colors group-hover/title:text-[var(--color-amber)]">
+        {post.title}<span class="text-[var(--color-amber)]">.</span>
+      </h2>
+    </a>
+
+    <!-- Cover (image or video, full-width on entry) -->
+    {post.cover && (
+      <a
+        href={`/post/${post.slug}`}
+        class="no-line mt-6 wide:mt-8 block bracket-corner overflow-hidden shadow-stamp"
+      >
+        {isVideoCover ? (
+          <video
+            src={post.cover}
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label={post.title}
+            class:list={[
+              "w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]",
+              wide ? "aspect-[16/8]" : "aspect-[16/9]",
+            ]}
+          />
+        ) : (
+          <img
+            src={post.cover}
+            alt={post.title}
+            loading="lazy"
+            class:list={[
+              "w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]",
+              wide ? "aspect-[16/8]" : "aspect-[16/9]",
+            ]}
+          />
+        )}
+      </a>
+    )}
+
+    <!-- Excerpt + repo -->
+    <div class="mt-6 wide:mt-8 grid wide:grid-cols-[1fr_220px] gap-x-10 gap-y-4 items-end">
+      <p class="body-serif text-[1.05rem] wide:text-[1.15rem] text-[var(--color-paper)] max-w-[58ch] leading-relaxed">
+        {post.excerpt}
+      </p>
+      <div class="flex flex-col items-start wide:items-end gap-1.5">
+        <a href={`/post/${post.slug}`} class="linked mono text-[0.72rem] tracking-[0.24em] uppercase text-[var(--color-amber)]">
+          ▮ Read the entry
+        </a>
+        {post.repo && (
+          <a href={post.repo} target="_blank" rel="noopener" class="linked mono text-[0.7rem] tracking-[0.22em] uppercase text-[var(--color-paper-dim)]">
+            ↗ source
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <!-- Hover scan-line that ripples across on hover -->
+  <span aria-hidden="true" class="absolute left-0 right-0 bottom-[-1px] h-px bg-[var(--color-amber)] scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100"></span>
+</article>

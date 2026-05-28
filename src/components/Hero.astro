@@ -1,0 +1,61 @@
+---
+import { posts, categories } from "@/data/posts";
+const entryCount = posts.length;
+const year = new Date().getFullYear();
+
+const ledger = [
+  { label: "Entries", value: String(entryCount).padStart(2, "0") },
+  { label: "Domains", value: String(categories.length).padStart(2, "0") },
+  { label: "Format", value: "Public log" },
+  { label: "Author", value: "N. Pappas" },
+];
+---
+
+<section class="relative pt-12 pb-6 wide:pt-20 wide:pb-10 overflow-hidden">
+  <div class="mx-auto w-full max-w-6xl px-5 wide:px-10">
+
+    <div class="reveal flex items-start justify-between mb-10 wide:mb-14 mono text-[0.7rem] tracking-[0.22em] uppercase text-[var(--color-paper-dim)]">
+      <span>Vol. 01 / {year}</span>
+      <span class="text-right">
+        <span class="text-[var(--color-amber)]">●</span> Logged · open
+      </span>
+    </div>
+
+    <div class="relative">
+      <h1
+        class="display reveal reveal-d1 select-none text-[clamp(5.5rem,21vw,22rem)]"
+        aria-label="Field Notes"
+      >
+        <span class="block">Field</span>
+        <span class="block pl-[8%] wide:pl-[16%] relative">
+          <span>Notes</span><span class="text-[var(--color-amber)]">.</span>
+          <span
+            aria-hidden="true"
+            class="absolute right-0 -bottom-1 wide:-bottom-3 mono text-[0.6rem] tracking-[0.22em] uppercase text-[var(--color-paper-dim)] w-40 text-right leading-tight hidden sm:inline-block"
+          >
+            <span class="text-[var(--color-amber)]">↳</span> from the workbench
+          </span>
+        </span>
+      </h1>
+    </div>
+
+    <div class="reveal reveal-d2 mt-14 wide:mt-20 grid grid-cols-2 wide:grid-cols-4 gap-x-6 gap-y-5 border-t border-[var(--color-rule)] pt-5">
+      {ledger.map((s) => (
+        <div class="flex flex-col gap-1">
+          <span class="mono text-[0.62rem] tracking-[0.28em] uppercase text-[var(--color-paper-dim)]">
+            {s.label}
+          </span>
+          <span class="display-tight text-2xl wide:text-3xl text-[var(--color-paper)]">
+            {s.value}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div aria-hidden="true" class="pointer-events-none absolute right-0 top-0 bottom-0 w-3 hidden wide:flex flex-col justify-around">
+    {Array.from({ length: 18 }).map((_, i) => (
+      <span class:list={["block h-px", i % 3 === 0 ? "w-3 bg-[var(--color-amber)]" : "w-1.5 bg-[var(--color-rule)]"]}></span>
+    ))}
+  </div>
+</section>
